@@ -1,0 +1,42 @@
+from tkinter import *
+
+screen = Tk()
+screen.title("Party Planner")
+
+screen.geometry("800x500")
+
+label1 = Label(screen, text = "Party Planner", font = ("Arial", 20, "bold"))
+label1.pack(pady = 5)
+
+Add = Button(screen, text = "Add" , width = 15)
+Add.pack(padx = 5, pady = 5)
+
+Entry1 = Entry(screen, width = 35)
+Entry1.pack(pady = 5, padx = 5)
+
+Delete = Button(screen, text = "DELETE" , width = 15)
+Delete.pack(padx = 5, pady = 5)
+
+frame = Frame(screen)
+frame.pack(pady = 5, padx = 5)
+
+ScrollBar = Scrollbar(frame, orient = VERTICAL)
+ScrollBar.pack(side = RIGHT, fill = Y)
+
+box = Listbox(frame, width = 70, bg = "red", yscrollcommand = ScrollBar.set)
+
+def add():
+    box.insert(END, Entry1.get())
+    Entry1.delete(0, END)
+
+def delete1():
+    box.delete(ANCHOR)
+
+Add.config(command = add)
+Delete.config(command = delete1)
+
+box.pack(pady = 25)
+
+ScrollBar.config(command = box.yview)
+
+screen.mainloop()
